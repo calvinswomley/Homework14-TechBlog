@@ -8,7 +8,7 @@ const addPostHandler = async (event) => {
 
     //if then POST
     if (post_title && post_content) {
-        const response = await fetch(`/api/projects`, {
+        const response = await fetch(`/api/posts`, {
             method: 'POST',
             body: JSON.stringify({ post_title, post_content }),
             headers: {
@@ -16,7 +16,7 @@ const addPostHandler = async (event) => {
             },
         });
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/homepage');
         } else {
             alert('Failed to add post.');
         }
@@ -32,7 +32,7 @@ const delButtonHandler = async (event) => {
             method: 'DELETE',
         });
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/homepage');
         } else {
             alert('Failed to delete Post.');
         }
