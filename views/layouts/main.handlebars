@@ -1,1 +1,37 @@
 <!-- make sure to add logout, login and signup button ids/classes to elements. See public js files for ids/classes-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechBlog</title>
+  <link rel="stylesheet" type="text/css" href=".../public/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to TechBlog!</h1>
+  </header>
+  <nav>
+      <a href="/">Homepage</a>
+      {{#if loggedIn}}
+      <button id="logout" class="in-out-btn">Logout</button>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+  </nav>
+    <main>
+        <h2>Posts</h2>
+        <div>
+            {{{body}}}
+        </div>
+    </main>
+  {{#if loggedIn}}
+  <script src="...public/js/logout.js"></script>
+  {{else}}
+  <script src="...public/js/login.js"></script>
+  {{/if}}
+</body>
+
+</html>
