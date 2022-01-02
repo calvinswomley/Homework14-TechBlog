@@ -33,7 +33,6 @@ Comment.init(
     creation_date: {
         type: DataTypes.DATEONLY,
         allowNull: false,
-        autoIncrement: true,
     },
   },
   {
