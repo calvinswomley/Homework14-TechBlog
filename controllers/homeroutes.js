@@ -1,18 +1,14 @@
 const router = require('express').Router();
 const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
+const sequelize = require("../Config/connection");
 
 //get all
 router.get('/', async (req, res) => {
     try {
       // Get all posts and JOIN with creation_date
       const postData = await Post.findAll({
-        include: [
-          {
-            model: Post,
-            attributes: ['creation_date'],
-          },
-        ],
+        attributes: ["creation_date"],
       });
   
       // Serialize data so the template can read it
