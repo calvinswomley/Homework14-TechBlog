@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newPost = await Post.create({
+    const newComment = await Comment.create({
       ...req.body,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newPost);
+    res.status(200).json(newComment);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -17,19 +17,19 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const postData = await Post.destroy({
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
 
-    if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found with this id!' });
       return;
     }
 
-    res.status(200).json(postData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -37,10 +37,9 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
     try {
-      const postData = await Post.update(
+      const commentData = await Comment.update(
         {
-            post_title: req.body.post_title,
-            post_content: req.body.post_content,
+            comment_content: req.body.comment_content,
         },
         {
         where: {
@@ -49,12 +48,12 @@ router.put('/:id', withAuth, async (req, res) => {
         },
       });
   
-      if (!postData) {
-        res.status(404).json({ message: 'No post found with this id!' });
+      if (!commentData) {
+        res.status(404).json({ message: 'No comment found with this id!' });
         return;
       }
   
-      res.status(200).json(postData);
+      res.status(200).json(commentData);
     } catch (err) {
       res.status(500).json(err);
     }
