@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
   
       const post = postData.get({ plain: true });
   
-      res.render('post', {
+      res.render('/partial/posts', {
         ...post,
         logged_in: req.session.logged_in
       });
@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
   
       const user = userData.get({ plain: true });
   
-      res.render('post', {
+      res.render('/partial/posts', {
         ...user,
         logged_in: true
       });
@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
     }
   });
   
-  router.get('/login', (req, res) => {
+  router.get('/login_signup', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
       res.redirect('/post');
